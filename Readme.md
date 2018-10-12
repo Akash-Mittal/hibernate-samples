@@ -1,13 +1,29 @@
 
 # Hibernate Learner Project with Spring Boot and JPA
 
+## This Artifact should be able to answer these questions.
+
+* How to Add `Audit Base Class` in `JPA HIbernate` ?
+* How to Add `CreatedTime` UpdateTime in `JPA HIbernate` ?
+
+=======
+
+## Learnings:
+
+* 
+* 
+* 
+* 
+* 
+
+=======
 
 ## Setup the Application
 
-1. Create a database named `hibernate_many_to_many_demo`.
+1. 
 
-2. Open `src/main/resources/application.properties` and change `spring.datasource.username` and `spring.datasource.password` properties as per your MySQL installation.
+2. 
 
-3. Type `mvn spring-boot:run` from the root directory of the project to run the application.
+3. 
+
 =======
-# Hibernate Many to Many Mapping Example with Spring Boot and JPA 
