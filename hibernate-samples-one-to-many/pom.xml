@@ -5,9 +5,10 @@
 
 
 	<parent>
-		<groupId>com.example</groupId>
-		<artifactId>hibernate-demo</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+
+	<groupId>com.am.innovations</groupId>
+	<artifactId>hibernate-samples</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
