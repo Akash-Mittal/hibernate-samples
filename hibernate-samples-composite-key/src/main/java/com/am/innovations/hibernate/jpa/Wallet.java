@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.am.innovations.entities.base.AuditModel;
+
 @Entity
 @Table(name = "wallet")
 public class Wallet extends AuditModel implements Serializable {
