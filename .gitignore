@@ -1,0 +1,6 @@
+/.settings
+/*.project
+/hibernate-samples-composite-key/.settings
+/hibernate-samples-composite-key/target
+/hibernate-samples-composite-key/.classpath
+/hibernate-samples-composite-key/.project
