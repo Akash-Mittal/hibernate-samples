@@ -19,19 +19,19 @@
 	<description>Learner project in Spring Boot For Hibernate One to Many.</description>
 	<dependencies>
 
-		<dependency>
-			<groupId>com.github.Akash-Mittal</groupId>
-			<artifactId>commons</artifactId>
-			<version>master-SNAPSHOT</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.github.Akash-Mittal</groupId> -->
+<!-- 			<artifactId>commons</artifactId> -->
+<!-- 			<version>master-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+<!-- 	<repositories> -->
+<!-- 		<repository> -->
+<!-- 			<id>jitpack.io</id> -->
+<!-- 			<url>https://jitpack.io</url> -->
+<!-- 		</repository> -->
+<!-- 	</repositories> -->
 
 
 
