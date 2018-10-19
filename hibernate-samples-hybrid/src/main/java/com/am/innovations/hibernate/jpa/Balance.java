@@ -13,26 +13,75 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "balance")
 public class Balance {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "balance_id")
-	private Long balanceID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "balance_id")
+    private Long balanceID;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private CURRENCY currency;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private CURRENCY currency;
 
-	@NotNull
-	private BigDecimal balance;
+    @NotNull
+    @Digits(integer = 6, fraction = 2, message = "{javax.validation.constraints.Digits.message}")
+    private BigDecimal balance;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "wallet_id")
-	private Wallet wallet;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Balance() {
+    }
+
+    public Balance(@NotNull CURRENCY currency,
+            @NotNull @Digits(integer = 6, fraction = 2, message = "{javax.validation.constraints.Digits.message}") BigDecimal balance) {
+        super();
+        this.currency = currency;
+        this.balance = balance;
+    }
+
+    public Long getBalanceID() {
+        return balanceID;
+    }
+
+    public void setBalanceID(Long balanceID) {
+        this.balanceID = balanceID;
+    }
+
+    public CURRENCY getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(CURRENCY currency) {
+        this.currency = currency;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return "Balance [balanceID=" + balanceID + ", currency=" + currency + ", balance=" + balance + "]";
+    }
 
 }
