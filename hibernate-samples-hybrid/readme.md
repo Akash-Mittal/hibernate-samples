@@ -1,10 +1,20 @@
 ## Hybrid 
 
-One to One Mapping Has Been Referenced from .
+*
+*
+*
+*
+
 
 ### Answers following
-How to order column Index using Hibernate?  
 
+*
+*
+*
+*
+
+
+One to One Mapping Has Been Referenced from .
 
 ### BLOG
 https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/
