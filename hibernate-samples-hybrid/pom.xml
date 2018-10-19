@@ -15,7 +15,7 @@
 	<artifactId>hibernate-samples-hybrid</artifactId>
 	<packaging>jar</packaging>
 
-	<name>Hibernate One|Many to One|Many * </name>
+	<name>Hibernate Hybrid Demo. </name>
 	<description>Learner project in Spring Boot For One|Many to One|Many Associations .</description>
 	<dependencies>
 
