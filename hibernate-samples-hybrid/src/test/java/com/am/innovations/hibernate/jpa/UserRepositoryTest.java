@@ -2,11 +2,12 @@ package com.am.innovations.hibernate.jpa;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,12 +50,12 @@ public class UserRepositoryTest {
 
         List<User> userList = userRepository.findAll();
         assertNotNull(userList);
-        Assert.assertThat(userList.size(), is(3));
+        assertThat(userList.size(), is(3));
         assertNotNull(userList.get(0).getBalance());
         assertNotNull(userList.get(0).getBalance().get(0));
 
-        Assert.assertThat(userList.get(0).getBalance().get(0).getCurrency(), is(CURRENCY.EUR));
-        Assert.assertTrue(userList.get(0).getBalance().get(0).getBalance().compareTo(BigDecimal.TEN) == 0);
+        assertThat(userList.get(0).getBalance().get(0).getCurrency(), is(CURRENCY.EUR));
+        assertTrue(userList.get(0).getBalance().get(0).getBalance().compareTo(BigDecimal.TEN) == 0);
 
     }
 }
