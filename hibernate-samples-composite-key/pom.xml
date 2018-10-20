@@ -17,11 +17,6 @@
 	<description>Learner project in Spring Boot For Hibernate Composite Key.</description>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>1.9.1</version>
-		</dependency>
 
 	</dependencies>
 
