@@ -1,5 +1,6 @@
 package com.am.innovations.hibernate.jpa;
 
+import java.math.BigDecimal;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +14,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/V_1.0")
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserService userService;
 
-    @GetMapping("/get")
-    public User get(@RequestParam(value = "userID") Long userID) throws InterruptedException, ExecutionException {
-        return userRepository.findById(userID).get();
-    }
+	@GetMapping("/balance")
+	public String get(@RequestParam(value = "userID") Long userID) throws InterruptedException, ExecutionException {
+		return userService.getBalance(userID);
+	}
 
-    @PostMapping("/add")
-    public User add(@RequestParam(value = "userName") String userName) throws InterruptedException, ExecutionException {
-        return userRepository.save(new User(userName));
-    }
+	@PostMapping("/deposit")
+	public String add(@RequestParam(value = "userID") Long userID, @RequestParam(value = "currency") CURRENCY currency,
+			@RequestParam(value = "amount") BigDecimal amount) {
+		if (userService.deposit(userID, currency, amount)) {
+			return userService.getBalance(userID);
+		}
+		return null;
+	}
 
 }

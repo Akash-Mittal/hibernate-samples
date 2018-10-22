@@ -1,5 +1,6 @@
 package com.am.innovations.hibernate.jpa;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -18,70 +19,72 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "balance")
-public class Balance {
+public class Balance extends AuditModel implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "balance_id")
-    private Long balanceID;
+	private static final long serialVersionUID = 6730311371449786546L;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private CURRENCY currency;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "balance_id")
+	private Long balanceID;
 
-    @NotNull
-    @Digits(integer = 6, fraction = 2, message = "{javax.validation.constraints.Digits.message}")
-    private BigDecimal balance;
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	private CURRENCY currency;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+	@NotNull
+	@Digits(integer = 6, fraction = 2, message = "{javax.validation.constraints.Digits.message}")
+	private BigDecimal balance;
 
-    public Balance() {
-    }
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
 
-    public Balance(@NotNull CURRENCY currency,
-            @NotNull @Digits(integer = 6, fraction = 2, message = "{javax.validation.constraints.Digits.message}") BigDecimal balance) {
-        super();
-        this.currency = currency;
-        this.balance = balance;
-    }
+	public Balance() {
+	}
 
-    public Long getBalanceID() {
-        return balanceID;
-    }
+	public Balance(@NotNull CURRENCY currency,
+			@NotNull @Digits(integer = 6, fraction = 2, message = "{javax.validation.constraints.Digits.message}") BigDecimal balance) {
+		super();
+		this.currency = currency;
+		this.balance = balance;
+	}
 
-    public void setBalanceID(Long balanceID) {
-        this.balanceID = balanceID;
-    }
+	public Long getBalanceID() {
+		return balanceID;
+	}
 
-    public CURRENCY getCurrency() {
-        return currency;
-    }
+	public void setBalanceID(Long balanceID) {
+		this.balanceID = balanceID;
+	}
 
-    public void setCurrency(CURRENCY currency) {
-        this.currency = currency;
-    }
+	public CURRENCY getCurrency() {
+		return currency;
+	}
 
-    public BigDecimal getBalance() {
-        return balance;
-    }
+	public void setCurrency(CURRENCY currency) {
+		this.currency = currency;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public BigDecimal getBalance() {
+		return balance;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    @Override
-    public String toString() {
-        return "Balance [balanceID=" + balanceID + ", currency=" + currency + ", balance=" + balance + "]";
-    }
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+
+	@Override
+	public String toString() {
+		return "Balance [balanceID=" + balanceID + ", currency=" + currency + ", balance=" + balance + "]";
+	}
 
 }

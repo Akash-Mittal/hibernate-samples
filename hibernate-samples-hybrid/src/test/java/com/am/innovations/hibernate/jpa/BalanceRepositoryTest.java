@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,41 +19,33 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("default")
-public class UserRepositoryTest {
+public class BalanceRepositoryTest {
+	@Autowired
+	private BalanceRepository balanceRepository;
 
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private BalanceRepository balanceRepository;
+	private static final Long userID = 1L;
+	private User user1;
 
 	@Before
 	public void setUp() throws Exception {
 		userRepository.deleteAll();
-	}
-
-	@Test
-	public void testSaveAndFind() throws Exception {
-		User user1 = new User(1l, "Adam");
-		User user2 = new User(2l, "Mike");
-		User user3 = new User(3l, "John");
-
+		user1 = new User("Mike");
 		Balance balance = new Balance(CURRENCY.EUR, BigDecimal.TEN);
 		user1.getBalance().add(balance);
 		balance.setUser(user1);
 
-		assertNotNull(userRepository.save(user1));
-		assertNotNull(userRepository.save(user2));
-		assertNotNull(userRepository.save(user3));
-
-		List<User> userList = userRepository.findAll();
-		assertNotNull(userList);
-		assertThat(userList.size(), is(3));
-		assertNotNull(userList.get(0).getBalance());
-		assertNotNull(userList.get(0).getBalance().get(0));
-
-		assertThat(userList.get(0).getBalance().get(0).getCurrency(), is(CURRENCY.EUR));
-		assertTrue(userList.get(0).getBalance().get(0).getBalance().compareTo(BigDecimal.TEN) == 0);
-
 	}
+
+	@Test
+	public void testFindByUserAndCurrency() throws Exception {
+		Optional<Balance> balance = balanceRepository.findByUserAndCurrency(userRepository.save(user1).getUserID(),
+				CURRENCY.EUR);
+		assertNotNull(balance.get());
+		assertThat(balance.get().getCurrency(), is(CURRENCY.EUR));
+		assertTrue(balance.get().getBalance().compareTo(BigDecimal.TEN) == 0);
+	}
+
 }
