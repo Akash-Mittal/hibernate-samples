@@ -1,8 +1,8 @@
 package com.am.innovations.hibernate.jpa;
 
 import java.io.Serializable;
-import java.util.EnumMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,7 +36,7 @@ public class User extends AuditModel implements Serializable {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@MapKey(name = "currency")
-	private Map<CURRENCY, Balance> balance = new EnumMap<>(CURRENCY.class);
+	private Map<CURRENCY, Balance> balance = new ConcurrentHashMap<>();
 
 	public User() {
 		super();
