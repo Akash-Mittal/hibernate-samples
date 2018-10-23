@@ -1,9 +1,8 @@
 package com.am.innovations.hibernate.jpa;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.EnumMap;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,12 +10,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class User extends AuditModel implements Serializable {
+
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", userName=" + userName + ", balance=" + balance + "]";
+	}
 
 	private static final long serialVersionUID = 6730311371449786545L;
 	@Id
@@ -30,7 +35,8 @@ public class User extends AuditModel implements Serializable {
 	private String userName;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Balance> balance = new ArrayList<>();
+	@MapKey(name = "currency")
+	private Map<CURRENCY, Balance> balance = new EnumMap<>(CURRENCY.class);
 
 	public User() {
 		super();
@@ -63,17 +69,11 @@ public class User extends AuditModel implements Serializable {
 		this.userName = userName;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userID=" + userID + ", userName=" + userName + ", balance=" + Arrays.toString(balance.toArray())
-				+ "]";
-	}
-
-	public List<Balance> getBalance() {
+	public Map<CURRENCY, Balance> getBalance() {
 		return balance;
 	}
 
-	public void setBalance(List<Balance> balance) {
+	public void setBalance(Map<CURRENCY, Balance> balance) {
 		this.balance = balance;
 	}
 
