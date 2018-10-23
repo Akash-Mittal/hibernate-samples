@@ -31,4 +31,12 @@ public class UserController {
 		return null;
 	}
 
+	@PostMapping("/withdraw")
+	public String withdraw(@RequestParam(value = "userID") Long userID,
+			@RequestParam(value = "currency") CURRENCY currency, @RequestParam(value = "amount") BigDecimal amount) {
+		if (userService.withdraw(userID, currency, amount)) {
+			return userService.getBalance(userID);
+		}
+		return null;
+	}
 }
