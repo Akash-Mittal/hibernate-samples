@@ -34,7 +34,7 @@ public class BalanceRepositoryTest {
 		userRepository.deleteAll();
 		user1 = new User("Mike");
 		Balance balance = new Balance(CURRENCY.EUR, BigDecimal.TEN);
-		user1.getBalance().add(balance);
+		user1.getBalance().put(CURRENCY.EUR, balance);
 		balance.setUser(user1);
 
 	}

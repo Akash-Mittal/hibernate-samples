@@ -3,7 +3,6 @@ package com.am.innovations.hibernate.jpa;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -39,7 +38,7 @@ public class UserRepositoryTest {
 		User user3 = new User(3l, "John");
 
 		Balance balance = new Balance(CURRENCY.EUR, BigDecimal.TEN);
-		user1.getBalance().add(balance);
+		user1.getBalance().put(CURRENCY.EUR, balance);
 		balance.setUser(user1);
 
 		assertNotNull(userRepository.save(user1));
@@ -50,10 +49,7 @@ public class UserRepositoryTest {
 		assertNotNull(userList);
 		assertThat(userList.size(), is(3));
 		assertNotNull(userList.get(0).getBalance());
-		assertNotNull(userList.get(0).getBalance().get(0));
-
-		assertThat(userList.get(0).getBalance().get(0).getCurrency(), is(CURRENCY.EUR));
-		assertTrue(userList.get(0).getBalance().get(0).getBalance().compareTo(BigDecimal.TEN) == 0);
+		assertNotNull(userList.get(0).getBalance().get(CURRENCY.EUR));
 
 	}
 }
