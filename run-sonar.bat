@@ -1,0 +1,1 @@
+mvn clean verify -P sonar -Dsonar.projectKey=Akash-Mittal_bp-wallet-grpc-spring -Dsonar.organization=akash-mittal-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=df85bba84208153b711026f0318d6f2c4e510d9c
