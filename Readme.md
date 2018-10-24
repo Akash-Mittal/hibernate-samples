@@ -3,7 +3,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/issues)
 [![GitHub forks](https://img.shields.io/github/forks/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/network)
 [![GitHub stars](https://img.shields.io/github/stars/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/stargazers)
-
+[![GitHub license](https://img.shields.io/github/license/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/blob/master/LICENSE)
 
 ## This Artifact should be able to answer these questions.
 
