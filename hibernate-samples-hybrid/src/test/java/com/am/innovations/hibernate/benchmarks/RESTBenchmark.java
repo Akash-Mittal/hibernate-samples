@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 @State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 
 public class RESTBenchmark {
 
@@ -39,22 +39,26 @@ public class RESTBenchmark {
 	}
 
 	@Benchmark
-	public void testDeposit() throws URISyntaxException {
+	public ResponseEntity<String> testDeposit() throws URISyntaxException {
 		RequestEntity<?> request1 = RequestEntity.post(new URI(DEPOSIT_URL)).accept(MediaType.APPLICATION_JSON).build();
 		ResponseEntity<String> response = template.exchange(request1, String.class);
+		return response;
 	}
 
 	@Benchmark
-	public void testWithdraw() throws URISyntaxException {
+	public ResponseEntity<String> testWithdraw() throws URISyntaxException {
 		RequestEntity<?> request1 = RequestEntity.post(new URI(WITHDRAW_URL)).accept(MediaType.APPLICATION_JSON)
 				.build();
 		ResponseEntity<String> response = template.exchange(request1, String.class);
+		return response;
+
 	}
 
 	@Benchmark
-	public void testGetBalance() throws URISyntaxException {
+	public ResponseEntity<String> testGetBalance() throws URISyntaxException {
 		RequestEntity<?> request1 = RequestEntity.get(new URI(BALANCE_URL)).accept(MediaType.APPLICATION_JSON).build();
 		ResponseEntity<String> response = template.exchange(request1, String.class);
+		return response;
 	}
 
 }
