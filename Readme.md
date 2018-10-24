@@ -1,5 +1,6 @@
 # Hibernate Learner Project with Spring Boot and JPA
 
+[![Build Status](https://travis-ci.org/Akash-Mittal/commons.svg?branch=master)](https://travis-ci.org/Akash-Mittal/hibernate-samples)
 [![GitHub issues](https://img.shields.io/github/issues/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/issues)
 [![GitHub forks](https://img.shields.io/github/forks/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/network)
 [![GitHub stars](https://img.shields.io/github/stars/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/stargazers)
