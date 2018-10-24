@@ -1,6 +1,7 @@
 # Hibernate Learner Project with Spring Boot and JPA
 
 [![GitHub issues](https://img.shields.io/github/issues/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Akash-Mittal/commons.svg)](https://github.com/Akash-Mittal/hibernate-samples/network)
 
 
 ## This Artifact should be able to answer these questions.
