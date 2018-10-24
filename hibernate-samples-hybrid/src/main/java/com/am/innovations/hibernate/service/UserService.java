@@ -15,7 +15,6 @@ import com.am.innovations.hibernate.entities.User;
 import com.am.innovations.hibernate.enums.CURRENCY;
 import com.am.innovations.hibernate.repo.BalanceRepository;
 import com.am.innovations.hibernate.repo.UserRepository;
-import com.am.innovations.validations.Validators;
 
 @Service
 public class UserService {
@@ -28,14 +27,14 @@ public class UserService {
 	private UserRepository userRepository;
 
 	BiFunction<Balance, BigDecimal, Void> addBalance = (balance, amount) -> {
-		balance.setBalance(Validators.Expression.ForBigDecimal.ADD.apply(balance.getBalance(), amount));
+		balance.setBalance(balance.getBalance().add(amount));
 		balanceRepository.save(balance);
 		return null;
 	};
 
 	BiFunction<Balance, BigDecimal, Void> withdrawBalance = (balance, amount) -> {
 		if (balance.getBalance().compareTo(amount) >= 0) {
-			balance.setBalance(Validators.Expression.ForBigDecimal.SUBTRACT.apply(balance.getBalance(), amount));
+			balance.setBalance(balance.getBalance().subtract(amount));
 			balanceRepository.save(balance);
 		} else {
 			logger.info("Insufficient Balance, Requested {} Current {}", amount, balance.getBalance());
@@ -43,7 +42,7 @@ public class UserService {
 		return null;
 	};
 
-	public boolean deposit(final Long userID, final CURRENCY currency, final BigDecimal amount) {
+	public synchronized boolean deposit(final Long userID, final CURRENCY currency, final BigDecimal amount) {
 		final AtomicBoolean result = new AtomicBoolean(true);
 		balanceRepository.findByUserAndCurrency(userID, currency).ifPresentOrElse(balance -> {
 			logger.info("Balance Found For User: {} and Currency: {}", userID, currency.name());
@@ -52,14 +51,14 @@ public class UserService {
 			logger.info("Balance Not Found For User: {} and Currency: {}", userID, currency.name());
 			Optional<User> optionalUser = userRepository.findById(userID);
 			optionalUser.ifPresentOrElse(user -> {
-				createBalance(currency, amount, user);
+				createFirstTimeBalanceForUser(currency, amount, user);
 			}, () -> result.set(false));
 		});
 
 		return result.get();
 	}
 
-	public boolean withdraw(final Long userID, final CURRENCY currency, final BigDecimal amount) {
+	public synchronized boolean withdraw(final Long userID, final CURRENCY currency, final BigDecimal amount) {
 		final AtomicBoolean result = new AtomicBoolean(true);
 		balanceRepository.findByUserAndCurrency(userID, currency).ifPresentOrElse(balance -> {
 			logger.info("Balance Found For User: {} and Currency: {}", userID, currency.name());
@@ -69,7 +68,7 @@ public class UserService {
 		return result.get();
 	}
 
-	private void createBalance(final CURRENCY currency, final BigDecimal amount, final User user) {
+	private void createFirstTimeBalanceForUser(final CURRENCY currency, final BigDecimal amount, final User user) {
 		logger.info("Created Balance For User: {} and Currency: {}", user.getUserID(), currency.name());
 		Balance balance = new Balance(currency, amount);
 		balance.setUser(user);
@@ -77,7 +76,7 @@ public class UserService {
 		userRepository.save(user);
 	}
 
-	public String getBalance(final Long userID) {
+	public synchronized String getBalance(final Long userID) {
 		StringBuilder response = new StringBuilder();
 		userRepository.findById(userID).ifPresentOrElse(user -> {
 			logger.info("Found User:" + user);
