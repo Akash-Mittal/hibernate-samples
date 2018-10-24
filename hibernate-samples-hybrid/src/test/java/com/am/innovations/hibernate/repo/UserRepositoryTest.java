@@ -21,7 +21,7 @@ import com.am.innovations.hibernate.enums.CURRENCY;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("default")
+@ActiveProfiles("test")
 public class UserRepositoryTest {
 
 	@Autowired

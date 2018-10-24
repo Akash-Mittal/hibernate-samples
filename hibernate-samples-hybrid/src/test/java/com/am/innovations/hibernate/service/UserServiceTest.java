@@ -17,7 +17,7 @@ import com.am.innovations.hibernate.repo.UserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("default")
+@ActiveProfiles("test")
 public class UserServiceTest {
 
 	@Autowired
