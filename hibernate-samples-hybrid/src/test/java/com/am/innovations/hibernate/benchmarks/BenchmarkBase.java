@@ -12,7 +12,6 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
-import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Base test harness for Benchmark tests. This class contains the global
@@ -20,7 +19,6 @@ import org.springframework.test.context.ActiveProfiles;
  * iterations, forks, threads, output file and type. Additionally, this
  */
 @SpringBootApplication
-@ActiveProfiles("benchmark")
 public class BenchmarkBase {
 
 	public static void main(String[] args) throws RunnerException, IOException {
