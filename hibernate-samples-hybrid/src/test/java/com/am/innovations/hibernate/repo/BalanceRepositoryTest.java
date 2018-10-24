@@ -19,12 +19,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.am.innovations.hibernate.entities.Balance;
 import com.am.innovations.hibernate.entities.User;
 import com.am.innovations.hibernate.enums.CURRENCY;
-import com.am.innovations.hibernate.repo.BalanceRepository;
-import com.am.innovations.hibernate.repo.UserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("default")
+@ActiveProfiles("test")
 public class BalanceRepositoryTest {
 	@Autowired
 	private BalanceRepository balanceRepository;
@@ -32,7 +30,6 @@ public class BalanceRepositoryTest {
 	@Autowired
 	private UserRepository userRepository;
 
-	private static final Long userID = 1L;
 	private User user1;
 
 	@Before
